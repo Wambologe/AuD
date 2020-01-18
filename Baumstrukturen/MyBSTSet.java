@@ -11,8 +11,8 @@ public class MyBSTSet<E  extends Comparable<E>> implements GenericOrderedSet<E> 
 			this.right = right;
 		}
 	}
-	//TODO: "T cannot be resolved to a type
-	private TreeNode<T> root;
+
+	private TreeNode<E> root;
 	
 	@Override
 	public boolean contains(E key) {
