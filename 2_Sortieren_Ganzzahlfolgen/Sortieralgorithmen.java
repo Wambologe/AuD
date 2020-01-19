@@ -1,17 +1,20 @@
 import java.util.Arrays;
 
 public class Sortieralgorithmen {
-	//Selection Sort
+	//Selection Sort (Seite 18)
 	public static int[] selection_sort(int[] f) {
+		// für jeden Index i von 0 bis n-2:
 		for (int to = 0; to < f.length - 1; to++) {
 			int min_idx = to;
 			int min_key = f[to];
+			// suche den Index j des kleinsten Elementes von Index i bis n-1
 			for (int from = to + 1; from < f.length; from++) {
 				if (f[from] < min_key) {
 					min_idx = from;
 					min_key = f[from];
 				}
 			}
+			// tausche f[i] gegen f[j]
 			f[min_idx] = f[to];
 			f[to] = min_key;
 		}
@@ -20,13 +23,19 @@ public class Sortieralgorithmen {
 	
 	//Insertion Sort
 	public static int[] insertion_sort(int[] f) {
+		// für jeden Index i von 1 bis N-1: 
 		for (int from = 1; from < f.length; from++) {
 			int to = from - 1;
 			int key = f[from];
+			// laufe mit dem Index j ab Index i nach links bis zum Einfügeindex
 			while (f[to] > key && to > -1) {
+				// schiebe dabei jedes Element f[j] größer als f[i] um eine
+				// Indexposition nach rechts
 				f[to+1] = f[to];
 				to--;
 			}
+			// wird ein Element f[j] kleiner als f[i] oder der Anfang der Folge
+			// erreicht, so füge f[i] am nachfolgenden Index j+1 ein
 			f[to+1] = key;
 		}		
 		return f;
@@ -51,7 +60,7 @@ public class Sortieralgorithmen {
 		int l_cursor = ll_idx;
 		int r_cursor = rl_idx;
 		for (int i = ll_idx; i <= ru_idx; i++) {
-			if (l_cursor > lu_idx) { //wenn linkes array bereits einsortiert ist, mit rechtem auff�llen
+			if (l_cursor > lu_idx) { //wenn linkes array bereits einsortiert ist, mit rechtem auff�llen
 				seq[i] = tmp[r_cursor++];
 			} else if (r_cursor > ru_idx) { //wenn rechtes array bereits einsortiert ist ...
 				seq[i] = tmp[l_cursor++];
