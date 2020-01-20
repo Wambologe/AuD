@@ -33,6 +33,20 @@ public class MyBSTSet<E  extends Comparable<E>> implements GenericOrderedSet<E> 
 		}
 	}
 	
+	// Iterative Implementierung
+	private TreeNode<E> lookupIt(TreeNode<E> t, E key) {
+		int cmp = -1;
+		while (t != null && cmp != 0) {
+			cmp = key.compareTo(t.key);
+			if (cmp < 0) {
+				t = t.left;
+			} else if (cmp > 0) {
+				t = t.right;
+			}
+		}
+		return t;
+	}
+	
 	@Override
 	public E minimum() {
 		TreeNode<E> min = minimum(this.root);
@@ -47,6 +61,16 @@ public class MyBSTSet<E  extends Comparable<E>> implements GenericOrderedSet<E> 
 		} else {
 			return minimum(t.left);
 		}
+	}
+	
+	// Iterative Implementierung
+	private TreeNode<E> minimumIt(TreeNode<E> t) {
+		if (t != null) {
+			while (t.left != null) {
+				t = t.left;
+			}
+		}		
+		return t;
 	}
 		
 	@Override
@@ -63,6 +87,16 @@ public class MyBSTSet<E  extends Comparable<E>> implements GenericOrderedSet<E> 
 		} else {
 			return maximum(t.right);
 		}
+	}
+	
+	// Iterative Implementierung
+	private TreeNode<E> maximumIt(TreeNode<E> t) {
+		if (t != null) {
+			while (t.right != null) {
+				t = t.right;
+			}
+		}		
+		return t;
 	}
 	
 	@Override
@@ -82,6 +116,17 @@ public class MyBSTSet<E  extends Comparable<E>> implements GenericOrderedSet<E> 
 			t.right = insert(t.right, k);		
 		}
 		return t;
+	}
+	
+	// Iterative Implementierung
+	private TreeNode<E> insertIt(TreeNode<E> t, E k) {
+		if (t == null) {
+			return new TreeNode<E>(k, null, null);
+		}
+		int cmp = k.compareTo(t.key);
+		if (cmp < 0) {
+			// TODO
+		}
 	}
 	
 	@Override
@@ -111,6 +156,12 @@ public class MyBSTSet<E  extends Comparable<E>> implements GenericOrderedSet<E> 
 		return root;
 	}
 	
+	// Iterative Implementierung 
+	private TreeNode<E> deleteIt(TreeNode<E> root, E key) {
+		//TODO
+		return null;
+	}
+	
 	private void traverse_inorder(TreeNode<E> t) {
 		if(t == null) {
 			return;
@@ -119,5 +170,9 @@ public class MyBSTSet<E  extends Comparable<E>> implements GenericOrderedSet<E> 
 			System.out.println(t.key);
 			traverse_inorder(t.right);
 		}
+	}
+	
+	public static void main(String args[]) {
+		// Tests folgen
 	}
 }
