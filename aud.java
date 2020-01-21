@@ -5,12 +5,12 @@ public class aud {
         System.out.println("Hello");
 
         MyBSTSet tree = new MyBSTSet<Integer>();
-        tree.insert(12);
-        tree.insert(40);
-        tree.insert(8);
-        tree.insert(99);
-        tree.insert(77);
-        tree.insert(9);
+        tree.insertIt(12);
+        tree.insertIt(40);
+        tree.insertIt(8);
+        tree.insertIt(99);
+        tree.insertIt(77);
+        tree.insertIt(9);
 
         int something = (int) tree.minimum();
 

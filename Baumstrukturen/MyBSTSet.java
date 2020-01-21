@@ -85,6 +85,36 @@ public class MyBSTSet<E  extends Comparable<E>> implements GenericOrderedSet<E> 
 		}
 		return t;
 	}
+
+	@Override
+	public MyBSTSet<E> insertIt(E key) {
+		this.root = insertIt(this.root, key);
+		return this;
+	}
+
+	private TreeNode<E> insertIt(TreeNode<E> t, E k) {
+		if (t == null) {
+			return new TreeNode<E>(k, null, null);
+		}
+		TreeNode<E> curr = t;
+		TreeNode<E> parent = null;
+		int cmp = -1;
+		while (curr != null && cmp != 0) {
+			parent = curr;
+			cmp = k.compareTo(curr.key);
+			if (cmp < 0) {
+				curr = curr.left;
+			} else if (cmp > 0) {
+				curr = curr.right;
+			}
+		}
+		if (cmp < 0) {
+			parent.left = new TreeNode<E>(k, null, null);
+		} else if (cmp > 0) {
+			parent.right = new TreeNode<E>(k, null, null);
+		}
+		return t;
+	}
 	
 	@Override
 	public MyBSTSet<E> remove(E key) {
@@ -112,14 +142,4 @@ public class MyBSTSet<E  extends Comparable<E>> implements GenericOrderedSet<E> 
 		}
 		return root;
 	}
-	
-	// private void traverse_inorder(TreeNode<E> t) {
-	// 	if(t == null) {
-	// 		return;
-	// 	} else {
-	// 		traverse_inorder(t.left);
-	// 		System.out.println(t.key);
-	// 		traverse_inorder(t.right);
-	// 	}
-	// }
 }

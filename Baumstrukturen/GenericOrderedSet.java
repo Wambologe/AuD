@@ -12,7 +12,10 @@ public interface GenericOrderedSet<E> {
 	
 	// Einfuegen des Schluessels k, falls noch nicht vorhanden
 	GenericOrderedSet<E> insert(E key);
+
+	// Einfuegen des Schluessels k, falls noch nicht vorhanden
+	GenericOrderedSet<E> insertIt(E key);
 	
-	// L�schen des Schluessels k, falls vorhanden
+	// Loeschen des Schluessels k, falls vorhanden
 	GenericOrderedSet<E> remove(E key);
 }
