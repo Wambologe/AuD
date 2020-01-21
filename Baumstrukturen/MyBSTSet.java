@@ -1,3 +1,5 @@
+package Baumstrukturen;
+
 public class MyBSTSet<E  extends Comparable<E>> implements GenericOrderedSet<E> {
 	
 	private static class TreeNode<T> {
@@ -111,13 +113,13 @@ public class MyBSTSet<E  extends Comparable<E>> implements GenericOrderedSet<E> 
 		return root;
 	}
 	
-	private void traverse_inorder(TreeNode<E> t) {
-		if(t == null) {
-			return;
-		} else {
-			traverse_inorder(t.left);
-			System.out.println(t.key);
-			traverse_inorder(t.right);
-		}
-	}
+	// private void traverse_inorder(TreeNode<E> t) {
+	// 	if(t == null) {
+	// 		return;
+	// 	} else {
+	// 		traverse_inorder(t.left);
+	// 		System.out.println(t.key);
+	// 		traverse_inorder(t.right);
+	// 	}
+	// }
 }

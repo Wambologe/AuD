@@ -1,3 +1,5 @@
+package Baumstrukturen;
+
 public interface GenericOrderedSet<E> {
 	// Beum wird nach Schluessel k durchsucht
 	boolean contains(E key);
@@ -11,6 +13,6 @@ public interface GenericOrderedSet<E> {
 	// Einfuegen des Schluessels k, falls noch nicht vorhanden
 	GenericOrderedSet<E> insert(E key);
 	
-	// Löschen des Schluessels k, falls vorhanden
+	// Lï¿½schen des Schluessels k, falls vorhanden
 	GenericOrderedSet<E> remove(E key);
 }

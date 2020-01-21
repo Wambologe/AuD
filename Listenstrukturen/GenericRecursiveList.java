@@ -1,9 +1,11 @@
+package Listenstrukturen;
+
 public interface GenericRecursiveList<E> {
 	
-	/* Einfügen des Wertes value an Index idx */
+	/* Einfï¿½gen des Wertes value an Index idx */
 	GenericRecursiveList<E> insert(E value, int idx);
 	
-	/* Löschen des Wertes an Index idx */
+	/* Lï¿½schen des Wertes an Index idx */
 	GenericRecursiveList<E> remove(int idx);
 	
 	/* Bestimmen des Wertes an Index idx */
@@ -13,7 +15,7 @@ public interface GenericRecursiveList<E> {
 	 * start_idx bzw. die Nullreferenz, wenn der Wert nicht enthalten ist */
 	Integer indexOf(E value, int start_idx);
 	
-	/* Bestimmen der Listenlänge */
+	/* Bestimmen der Listenlï¿½nge */
 	int length();
 	
 	/* Test auf leere Liste */

@@ -1,3 +1,5 @@
+package Listenstrukturen;
+
 public class MyRecursiveListNode<E> implements GenericRecursiveList<E> {
 	
 	private E value;

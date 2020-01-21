@@ -1,3 +1,5 @@
+package Listenstrukturen;
+
 public class MyRecursiveListEmpty<E> implements GenericRecursiveList<E> {
 
 	@Override

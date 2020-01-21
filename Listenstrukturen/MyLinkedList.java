@@ -1,3 +1,5 @@
+package Listenstrukturen;
+
 public class MyLinkedList<E> implements GenericList<E> {
 
 	private static class ListNode<T> {

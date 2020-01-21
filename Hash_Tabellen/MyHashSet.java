@@ -1,5 +1,9 @@
+package Hash_Tabellen;
+
+import Listenstrukturen.GenericList;
+
 // Seite 634
-public class MyHashSet<E> implements GenericSet<E> {
+public class MyHashSet<E> implements GenericList<E> {
     private static class BucketNode<T> {
         private T key;
         private BucketNode<T> next = null;
@@ -45,11 +49,11 @@ public class MyHashSet<E> implements GenericSet<E> {
     }
 
     // Seite 636
-    @Override
-    public boolean contains(E key) {
-        BucketNode<E> cn = seek(this.buckets, key);
-        return cn != null;
-    }
+    // @Override
+    // public boolean contains(E key) {
+    //     BucketNode<E> cn = seek(this.buckets, key);
+    //     return cn != null;
+    // }
 
     // Seite 637 (Hilfsfunktion)
     private int addToTable(BucketNode<E>[] buckets, E key) {
@@ -83,14 +87,14 @@ public class MyHashSet<E> implements GenericSet<E> {
     }
 
      // Seite 638
-    @Override
-    public MyHashSet<E> insert(E key) {
-        if (this.size >= load_factor * this.buckets.length) {
-            this.buckets = reorganize(this.buckets, this.buckets.length << 1);
-        }
-        this.size += addToTable(this.buckets, key);
-        return this;
-    }
+    // @Override
+    // public MyHashSet<E> insert(E key) {
+    //     if (this.size >= load_factor * this.buckets.length) {
+    //         this.buckets = reorganize(this.buckets, this.buckets.length << 1);
+    //     }
+    //     this.size += addToTable(this.buckets, key);
+    //     return this;
+    // }
 
     // Seite 639 & 640
     private int removeFromTable(BucketNode<E>[] buckets, E key) {
@@ -138,13 +142,49 @@ public class MyHashSet<E> implements GenericSet<E> {
     }
 
     // Seite 641
+    // @Override
+    // public MyHashSet<E> remove(E key) {
+    //     this.size -= removeFromTable(this.buckets, key);
+    //     if (this.size < load_factor * (this.buckets.length >> 1)) {
+    //         this.buckets = reorganize(this.buckets, this.buckets.length >> 1);
+    //     }
+    //     return this;
+    // }
+
     @Override
-    public MyHashSet<E> remove(E key) {
-        this.size -= removeFromTable(this.buckets, key);
-        if (this.size < load_factor * (this.buckets.length >> 1)) {
-            this.buckets = reorganize(this.buckets, this.buckets.length >> 1);
-        }
-        return this;
+    public GenericList<E> insert(E value, int idx) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public E remove(int idx) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public E get(int idx) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Integer indexOf(E value, int start_idx) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public int length() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        // TODO Auto-generated method stub
+        return false;
     }
         
 }

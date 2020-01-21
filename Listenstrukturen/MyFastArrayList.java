@@ -1,3 +1,5 @@
+package Listenstrukturen;
+
 public class MyFastArrayList<E> implements GenericList<E> {
 
 	private final static int block = 100;

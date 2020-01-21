@@ -1,3 +1,5 @@
+package Sortieren_Ganzzahlfolgen;
+
 import java.util.Arrays;
 
 public class Sortieralgorithmen {

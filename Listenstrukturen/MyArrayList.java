@@ -1,3 +1,5 @@
+package Listenstrukturen;
+
 public class MyArrayList<E> implements GenericList<E> {
 
 	@SuppressWarnings("unchecked")

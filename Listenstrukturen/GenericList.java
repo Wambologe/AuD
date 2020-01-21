@@ -1,8 +1,10 @@
+package Listenstrukturen;
+
 public interface GenericList<E> {
-	/* Einfügen des Wertes value an Index idx */
+	/* Einfï¿½gen des Wertes value an Index idx */
 	GenericList<E> insert(E value, int idx);
 	
-	/* Löschen und Zurückgeben des Wertes an Index idx */
+	/* Lï¿½schen und Zurï¿½ckgeben des Wertes an Index idx */
 	E remove(int idx);
 	
 	/* Bestimmen des Wertes an Index idx */
@@ -12,7 +14,7 @@ public interface GenericList<E> {
 	 * start_idx bzw. die Nullreferenz, wenn der Wert nicht enthalten ist */
 	Integer indexOf(E value, int start_idx);
 	
-	/* Bestimmen der Listenlänge */
+	/* Bestimmen der Listenlï¿½nge */
 	int length();
 	
 	/* Test auf leere Liste */
