@@ -12,11 +12,12 @@ public class aud {
         tree.insertIt(77);
         tree.insertIt(9);
 
-        int something = (int) tree.minimum();
 
+        System.out.printf("Das Maximum ist: %d\n", tree.maximumIt());
+        System.out.printf("Das Minimum ist: %d\n", tree.minimumIt());
 
-
-
-        
+        System.out.println(tree.containsIt(99));
+        System.out.println(tree.containsIt(98));
+        System.out.println(tree.containsIt(77));
     }
 }

@@ -34,7 +34,30 @@ public class MyBSTSet<E  extends Comparable<E>> implements GenericOrderedSet<E> 
 			return t; 
 		}
 	}
-	
+
+	@Override
+	public boolean containsIt(E key) {
+		return lookupIt(this.root, key) != null;
+	}
+
+	private TreeNode<E> lookupIt(TreeNode<E> t, E key) {
+		if (t == null) {
+			return null;
+		}
+		TreeNode<E> curr = t;
+		int cmp = -1;
+		// = key.compareTo(t.key);
+		while (curr != null && cmp != 0) {
+			cmp = key.compareTo(curr.key);
+			if (cmp < 0) {
+				curr = curr.left;
+			} else if (cmp > 0) {
+				curr = curr.right;
+			}
+		}
+		return curr;
+	}
+
 	@Override
 	public E minimum() {
 		TreeNode<E> min = minimum(this.root);
@@ -49,6 +72,23 @@ public class MyBSTSet<E  extends Comparable<E>> implements GenericOrderedSet<E> 
 		} else {
 			return minimum(t.left);
 		}
+	}
+
+	@Override
+	public E minimumIt() {
+		TreeNode<E> min = minimumIt(this.root);
+		return min == null ? null : min.key;
+	}
+	
+	public TreeNode<E> minimumIt(TreeNode<E> t) {
+		if (t == null) {
+			return null;
+		} 
+		TreeNode<E> curr = t;
+		while (curr.left != null) {
+			curr = curr.left;
+		}
+		return curr;
 	}
 		
 	@Override
@@ -65,6 +105,23 @@ public class MyBSTSet<E  extends Comparable<E>> implements GenericOrderedSet<E> 
 		} else {
 			return maximum(t.right);
 		}
+	}
+
+	@Override
+	public E maximumIt() {
+		TreeNode<E> max = maximumIt(this.root);
+		return max == null ? null : max.key;
+	}
+
+	private TreeNode<E> maximumIt(TreeNode<E> t) {
+		if (t == null) {
+			return null;
+		} 
+		TreeNode<E> curr = t;
+		while (curr.right != null) {
+			curr = curr.right;
+		}
+		return curr;
 	}
 	
 	@Override
@@ -139,6 +196,35 @@ public class MyBSTSet<E  extends Comparable<E>> implements GenericOrderedSet<E> 
 			}
 			root.key = minimum(root.right).key;
 			root.right = delete(root.right, root.key);
+		}
+		return root;
+	}
+
+	@Override
+	public MyBSTSet<E> removeIt(E key) {
+		this.root = deleteIt(this.root, key);
+		return this;
+	}
+
+	private TreeNode<E> deleteIt(TreeNode<E> root, E key) {
+		if (root == null) {
+			return null;
+		}
+		TreeNode<E> curr = root;
+		TreeNode<E> parent = null;
+		int cmp = -1;
+		while (curr != null && cmp != 0) {
+			cmp = key.compareTo(curr.key);
+			if (cmp < 0) {
+				curr = curr.left;
+			} else if (cmp > 0) {
+				curr = curr.right;
+			}
+		}
+		if (cmp == 0) {
+			if (curr.left == null && curr.right == null) {
+				curr = null;
+			}
 		}
 		return root;
 	}
