@@ -15,4 +15,12 @@ public interface GenericOrderedSet<E> {
 	
 	// L�schen des Schluessels k, falls vorhanden
 	GenericOrderedSet<E> remove(E key);
+
+	//Iterative//
+	GenericOrderedSet<E> insertIterative(E key);
+
+	GenericOrderedSet<E> removeIterative(E key);
+
+
+
 }
