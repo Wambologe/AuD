@@ -36,28 +36,6 @@ public class MyBSTSet<E  extends Comparable<E>> implements GenericOrderedSet<E> 
 	}
 
 	@Override
-	public boolean containsIt(E key) {
-		return lookupIt(this.root, key) != null;
-	}
-
-	private TreeNode<E> lookupIt(TreeNode<E> t, E key) {
-		if (t == null) {
-			return null;
-		}
-		TreeNode<E> curr = t;
-		int cmp = -1;
-		while (curr != null && cmp != 0) {
-			cmp = key.compareTo(curr.key);
-			if (cmp < 0) {
-				curr = curr.left;
-			} else if (cmp > 0) {
-				curr = curr.right;
-			}
-		}
-		return curr;
-	}
-
-	@Override
 	public E minimum() {
 		TreeNode<E> min = minimum(this.root);
 		return min == null ? null : min.key;
@@ -72,24 +50,7 @@ public class MyBSTSet<E  extends Comparable<E>> implements GenericOrderedSet<E> 
 			return minimum(t.left);
 		}
 	}
-
-	@Override
-	public E minimumIt() {
-		TreeNode<E> min = minimumIt(this.root);
-		return min == null ? null : min.key;
-	}
 	
-	public TreeNode<E> minimumIt(TreeNode<E> t) {
-		if (t == null) {
-			return null;
-		} 
-		TreeNode<E> curr = t;
-		while (curr.left != null) {
-			curr = curr.left;
-		}
-		return curr;
-	}
-		
 	@Override
 	public E maximum() {
 		TreeNode<E> max = maximum(this.root);
@@ -104,23 +65,6 @@ public class MyBSTSet<E  extends Comparable<E>> implements GenericOrderedSet<E> 
 		} else {
 			return maximum(t.right);
 		}
-	}
-
-	@Override
-	public E maximumIt() {
-		TreeNode<E> max = maximumIt(this.root);
-		return max == null ? null : max.key;
-	}
-
-	private TreeNode<E> maximumIt(TreeNode<E> t) {
-		if (t == null) {
-			return null;
-		} 
-		TreeNode<E> curr = t;
-		while (curr.right != null) {
-			curr = curr.right;
-		}
-		return curr;
 	}
 	
 	@Override
@@ -143,6 +87,87 @@ public class MyBSTSet<E  extends Comparable<E>> implements GenericOrderedSet<E> 
 	}
 
 	@Override
+	public MyBSTSet<E> remove(E key) {
+		this.root = delete(this.root, key);
+		return this;
+	}
+
+	private TreeNode<E> delete(TreeNode<E> root, E key) {
+		if (root == null) {
+			return null;
+		}
+		int cmp = key.compareTo(root.key);
+		if (cmp < 0) {
+			root.left = delete(root.left, key);
+		} else if (cmp > 0) {
+			root.right = delete(root.right, key);
+		} else {
+			if (root.left == null) {
+				return root.right;
+			} else if (root.right == null) {
+				return root.left;
+			}
+			root.key = minimum(root.right).key;
+			root.right = delete(root.right, root.key);
+		}
+		return root;
+	}
+
+	//ITERATIVE IMPLEMENTIERUNGEN
+
+	public boolean containsIt(E key) {
+		return lookupIt(this.root, key) != null;
+	}
+
+	private TreeNode<E> lookupIt(TreeNode<E> t, E key) {
+		if (t == null) {
+			return null;
+		}
+		TreeNode<E> curr = t;
+		int cmp = -1;
+		while (curr != null && cmp != 0) {
+			cmp = key.compareTo(curr.key);
+			if (cmp < 0) {
+				curr = curr.left;
+			} else if (cmp > 0) {
+				curr = curr.right;
+			}
+		}
+		return curr;
+	}
+
+	public E minimumIt() {
+		TreeNode<E> min = minimumIt(this.root);
+		return min == null ? null : min.key;
+	}
+	
+	public TreeNode<E> minimumIt(TreeNode<E> t) {
+		if (t == null) {
+			return null;
+		} 
+		TreeNode<E> curr = t;
+		while (curr.left != null) {
+			curr = curr.left;
+		}
+		return curr;
+	}
+	
+	public E maximumIt() {
+		TreeNode<E> max = maximumIt(this.root);
+		return max == null ? null : max.key;
+	}
+
+	private TreeNode<E> maximumIt(TreeNode<E> t) {
+		if (t == null) {
+			return null;
+		} 
+		TreeNode<E> curr = t;
+		while (curr.right != null) {
+			curr = curr.right;
+		}
+		return curr;
+	}
+
 	public MyBSTSet<E> insertIt(E key) {
 		this.root = insertIt(this.root, key);
 		return this;
@@ -172,39 +197,12 @@ public class MyBSTSet<E  extends Comparable<E>> implements GenericOrderedSet<E> 
 		return t;
 	}
 	
-	@Override
-	public MyBSTSet<E> remove(E key) {
-		this.root = delete(this.root, key);
-		return this;
-	}
-
-	private TreeNode<E> delete(TreeNode<E> root, E key) {
-		if (root == null) {
-			return null;
-		}
-		int cmp = key.compareTo(root.key);
-		if (cmp < 0) {
-			root.left = delete(root.left, key);
-		} else if (cmp > 0) {
-			root.right = delete(root.right, key);
-		} else {
-			if (root.left == null) {
-				return root.right;
-			} else if (root.right == null) {
-				return root.left;
-			}
-			root.key = minimum(root.right).key;
-			root.right = delete(root.right, root.key);
-		}
-		return root;
-	}
-
-	@Override
 	public MyBSTSet<E> removeIt(E key) {
 		this.root = deleteIt(this.root, key);
 		return this;
 	}
 
+	//funzt nicht
 	private TreeNode<E> deleteIt(TreeNode<E> root, E key) {
 		if (root == null) {
 			return null;
