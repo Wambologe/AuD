@@ -46,7 +46,6 @@ public class MyBSTSet<E  extends Comparable<E>> implements GenericOrderedSet<E> 
 		}
 		TreeNode<E> curr = t;
 		int cmp = -1;
-		// = key.compareTo(t.key);
 		while (curr != null && cmp != 0) {
 			cmp = key.compareTo(curr.key);
 			if (cmp < 0) {
@@ -211,7 +210,6 @@ public class MyBSTSet<E  extends Comparable<E>> implements GenericOrderedSet<E> 
 			return null;
 		}
 		TreeNode<E> curr = root;
-		TreeNode<E> parent = null;
 		int cmp = -1;
 		while (curr != null && cmp != 0) {
 			cmp = key.compareTo(curr.key);
@@ -222,8 +220,15 @@ public class MyBSTSet<E  extends Comparable<E>> implements GenericOrderedSet<E> 
 			}
 		}
 		if (cmp == 0) {
-			if (curr.left == null && curr.right == null) {
-				curr = null;
+			if (curr.left == null) {
+				curr = curr.right;
+			} else if (curr.right == null) {
+				curr = curr.left;
+			} else {
+				TreeNode<E> parent = curr;
+				curr = minimumIt(curr.right);
+				parent.key = curr.key;
+				
 			}
 		}
 		return root;
