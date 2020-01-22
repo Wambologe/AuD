@@ -103,4 +103,7 @@ public class MinHeap<E extends Comparable<E>> implements GenericPrioQueue<E> {
     public boolean isEmpty() {
         return this.heap_size == 0;
     }
+
+	public static void MinHeap(Integer[] bla) {
+	}
 }
