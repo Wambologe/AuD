@@ -2,10 +2,8 @@ package Listenstrukturen;
 
 public class MyArrayList<E> implements GenericList<E> {
 
-	@SuppressWarnings("unchecked")
 	private E[] vals = (E[])new Object[0];
-	/* ... */
-	
+
 	
 	@Override
 	public MyArrayList<E> insert(E value, int idx) {

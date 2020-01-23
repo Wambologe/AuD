@@ -6,7 +6,7 @@ public class MyFastArrayList<E> implements GenericList<E> {
 	@SuppressWarnings("unchecked")
 	private E[] vals = (E[]) new Object[MyFastArrayList.block];
 	private int used = 0;
-	/* ... */
+
 
 	@Override
 	public MyFastArrayList<E> insert(E value, int idx) {
@@ -65,5 +65,4 @@ public class MyFastArrayList<E> implements GenericList<E> {
 	public boolean isEmpty() {
 		return this.vals.length == 0;
 	}
-
 }
