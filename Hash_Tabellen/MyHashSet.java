@@ -3,7 +3,7 @@ package Hash_Tabellen;
 import Listenstrukturen.GenericList;
 
 // Seite 634
-public class MyHashSet<E> implements GenericList<E> {
+public class MyHashSet<E> implements GenericSet<E> {
     private static class BucketNode<T> {
         private T key;
         private BucketNode<T> next = null;
@@ -87,14 +87,14 @@ public class MyHashSet<E> implements GenericList<E> {
     }
 
      // Seite 638
-    // @Override
-    // public MyHashSet<E> insert(E key) {
-    //     if (this.size >= load_factor * this.buckets.length) {
-    //         this.buckets = reorganize(this.buckets, this.buckets.length << 1);
-    //     }
-    //     this.size += addToTable(this.buckets, key);
-    //     return this;
-    // }
+    @Override
+    public MyHashSet<E> insert(E key) {
+        if (this.size >= load_factor * this.buckets.length) {
+            this.buckets = reorganize(this.buckets, this.buckets.length << 1);
+        }
+        this.size += addToTable(this.buckets, key);
+        return this;
+    }
 
     // Seite 639 & 640
     private int removeFromTable(BucketNode<E>[] buckets, E key) {

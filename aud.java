@@ -1,4 +1,5 @@
 import Baumstrukturen.MyBSTSet;
+import Hash_Tabellen.MyHashSet;
 
 public class aud {
     public static void main(final String args[]) {
@@ -15,17 +16,23 @@ public class aud {
 
         // tree.remove(8);
 
-        MyBSTSet treeIterative = new MyBSTSet<Integer>();
-        treeIterative.insertIterative(12);
-        treeIterative.insertIterative(40);
-        treeIterative.insertIterative(8);
-        treeIterative.insertIterative(99);
-        treeIterative.insertIterative(77);
-        treeIterative.insertIterative(9);
-        treeIterative.insertIterative(39);
-        treeIterative.insertIterative(77);
+        // MyBSTSet treeIterative = new MyBSTSet<Integer>();
+        // treeIterative.insertIterative(12);
+        // treeIterative.insertIterative(40);
+        // treeIterative.insertIterative(8);
+        // treeIterative.insertIterative(99);
+        // treeIterative.insertIterative(77);
+        // treeIterative.insertIterative(9);
+        // treeIterative.insertIterative(39);
+        // treeIterative.insertIterative(77);
 
-        treeIterative.removeIterative(99);
+        // treeIterative.removeIterative(99);
+
+        MyHashSet<Integer> hashList = new MyHashSet();
+        hashList.hash(12, 10);
+
+
+        
 
     }
 }
