@@ -1,9 +1,9 @@
 package Hash_Tabellen;
 
-import Listenstrukturen.GenericList;
+import Listenstrukturen.GenericSet;
 
 // Seite 634
-public class MyHashSet<E> implements GenericList<E> {
+public class MyHashSet<E> implements GenericSet<E> {
     private static class BucketNode<T> {
         private T key;
         private BucketNode<T> next = null;
@@ -14,12 +14,15 @@ public class MyHashSet<E> implements GenericList<E> {
         }
     }
 
-    private final static int init_buckets = 256;
-    private final static double load_factor = 0.5;
+    private final static int init_buckets = 10;
+    private final static double load_factor = 2;
     private BucketNode<E>[] buckets = new BucketNode[MyHashSet.init_buckets];
     private int size = 0;
 
     private int hash(E key, int M) {
+        Object hashKey = key.hashCode();
+        Object hashKeyAdvanced = (key.hashCode() & 0x7fffffff);
+
         return (key.hashCode() & 0x7fffffff) % M;
     }
 
@@ -49,11 +52,11 @@ public class MyHashSet<E> implements GenericList<E> {
     }
 
     // Seite 636
-    // @Override
-    // public boolean contains(E key) {
-    //     BucketNode<E> cn = seek(this.buckets, key);
-    //     return cn != null;
-    // }
+    @Override
+    public boolean contains(E key) {
+        BucketNode<E> cn = seek(this.buckets, key);
+        return cn != null;
+    }
 
     // Seite 637 (Hilfsfunktion)
     private int addToTable(BucketNode<E>[] buckets, E key) {
@@ -87,14 +90,14 @@ public class MyHashSet<E> implements GenericList<E> {
     }
 
      // Seite 638
-    // @Override
-    // public MyHashSet<E> insert(E key) {
-    //     if (this.size >= load_factor * this.buckets.length) {
-    //         this.buckets = reorganize(this.buckets, this.buckets.length << 1);
-    //     }
-    //     this.size += addToTable(this.buckets, key);
-    //     return this;
-    // }
+    @Override
+    public MyHashSet<E> insert(E key) {
+        if (this.size >= load_factor * this.buckets.length) {
+            this.buckets = reorganize(this.buckets, this.buckets.length << 1);
+        }
+        this.size += addToTable(this.buckets, key);
+        return this;
+    }
 
     // Seite 639 & 640
     private int removeFromTable(BucketNode<E>[] buckets, E key) {
@@ -142,49 +145,25 @@ public class MyHashSet<E> implements GenericList<E> {
     }
 
     // Seite 641
-    // @Override
-    // public MyHashSet<E> remove(E key) {
-    //     this.size -= removeFromTable(this.buckets, key);
-    //     if (this.size < load_factor * (this.buckets.length >> 1)) {
-    //         this.buckets = reorganize(this.buckets, this.buckets.length >> 1);
-    //     }
-    //     return this;
-    // }
-
     @Override
-    public GenericList<E> insert(E value, int idx) {
-        // TODO Auto-generated method stub
-        return null;
+    public MyHashSet<E> remove(E key) {
+        this.size -= removeFromTable(this.buckets, key);
+        if (this.size < load_factor * (this.buckets.length >> 1)) {
+            this.buckets = reorganize(this.buckets, this.buckets.length >> 1);
+        }
+        return this;
     }
 
     @Override
-    public E remove(int idx) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public E get(int idx) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public Integer indexOf(E value, int start_idx) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public int length() {
-        // TODO Auto-generated method stub
+    public int size() {
         return 0;
     }
 
     @Override
     public boolean isEmpty() {
-        // TODO Auto-generated method stub
-        return false;
+        return true;
     }
+
+
         
 }
