@@ -54,10 +54,15 @@ public class BST {
             } else if (t.right != null) {
                 return minimum(t.right);
             }
+            int k = t.key;
             while (t.parent != null) {
                 t = t.parent;
             }
-            return t;
+            if (t.key > k) {
+                return t;
+            } else {
+                return null;
+            }            
         }
     }
 }

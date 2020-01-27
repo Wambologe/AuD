@@ -26,9 +26,9 @@ class MinHeap {
         } else if (this.heap[idx] == key) {
             return idx;
         } else {
-            Integer i = lookup(this.left_child(i), key);
+            Integer i = lookup(left_child(idx), key);
             if (i == null) {
-                i = lookup(this.right_child(i), key);
+                i = lookup(right_child(idx), key);
             }
             return i;
         }
