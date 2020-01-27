@@ -11,33 +11,47 @@ public class BST {
     }
     private TreeNode root = null;
     
-    static int length(TreeNode t) {
+    static int lengthRE(TreeNode t) {
         if (t == null) {
             return 0;
         } else {
-            return t.rank + length(t.right);
+            return t.rank + lengthRE(t.right);
         }        
     }
 
-    void add(int idx, int value) {
-        this.root = insert(this.root, idx, value);
+    static int lengthIT(TreeNode t) {
+        if (t == null) {
+            return 0;
+        } else {
+            TreeNode curr = t;
+            int len = curr.rank;
+            while (curr.right != null) {
+                curr = curr.right;
+                len += curr.rank;
+            }
+            return len;
+        }
     }
-    static TreeNode insert(TreeNode t, int idx, int val) {
+
+    void addRE(int idx, int value) {
+        this.root = insertRE(this.root, idx, value);
+    }
+    static TreeNode insertRE(TreeNode t, int idx, int val) {
         if (t == null) {
             return new TreeNode(1, val, null, null);
         } else if (idx < t.rank) {
             t.rank += 1;
-            t.left = insert(t.left, idx, val);
+            t.left = insertRE(t.left, idx, val);
         } else {
-            t.right = insert(t.right, idx-t.rank, val);
+            t.right = insertRE(t.right, idx-t.rank, val);
         }
         return t;
     }
 
-    void addIt(int idx, int value) {
-        this.root = insertIt(this.root, idx, value);
+    void addIT(int idx, int value) {
+        this.root = insertIT(this.root, idx, value);
     }
-    static TreeNode insertIt(TreeNode t, int idx, int val) {
+    static TreeNode insertIT(TreeNode t, int idx, int val) {
         if (t == null) {
             return new TreeNode(1, val, null, null);
         } else {
@@ -62,7 +76,7 @@ public class BST {
         }
     }
 
-    static TreeNode get(TreeNode t, int idx) {
+    static TreeNode getIT(TreeNode t, int idx) {
         while (idx != t.rank-1) {
             if (idx < t.rank-1) {
                 t = t.left;
@@ -74,11 +88,11 @@ public class BST {
         return t;
     }
 
-    static TreeNode getRe(TreeNode t, int idx) {
+    static TreeNode getRE(TreeNode t, int idx) {
         if (idx < t.rank-1) {
-            return getRe(t.left, idx);
+            return getRE(t.left, idx);
         } else if (idx != t.rank-1) {
-            return get(t.right, idx-t.rank);
+            return getRE(t.right, idx-t.rank);
         } else {
             return t;
         }
