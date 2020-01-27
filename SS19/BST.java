@@ -34,6 +34,34 @@ public class BST {
         return t;
     }
 
+    void addIt(int idx, int value) {
+        this.root = insertIt(this.root, idx, value);
+    }
+    static TreeNode insertIt(TreeNode t, int idx, int val) {
+        if (t == null) {
+            return new TreeNode(1, val, null, null);
+        } else {
+            TreeNode curr = t;
+            TreeNode parent = curr;
+            while (curr != null) {
+                parent = curr;
+                if (idx < curr.rank) {
+                    curr.rank += 1;
+                    curr = curr.left;
+                } else {
+                    idx -= curr.rank;
+                    curr = curr.right;
+                }
+            }
+            if (parent.rank == 1) {
+                parent.left = new TreeNode(1, val, null, null);
+            } else {
+                parent.right = new TreeNode(1, val, null, null);
+            }
+            return t;
+        }
+    }
+
     static TreeNode get(TreeNode t, int idx) {
         while (idx != t.rank-1) {
             if (idx < t.rank-1) {

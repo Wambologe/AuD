@@ -20,17 +20,22 @@ class MinHeap {
         return heap_size == 0 ? null : this.heap[0];
     }
 
-    Integer lookup(int idx, int key) {
+    Integer lookupRE(int idx, int key) {
         if (idx > heap_size-1 || this.heap[idx] > key) {
             return null;
         } else if (this.heap[idx] == key) {
             return idx;
         } else {
-            Integer i = lookup(left_child(idx), key);
+            Integer i = lookupRE(left_child(idx), key);
             if (i == null) {
-                i = lookup(right_child(idx), key);
+                i = lookupRE(right_child(idx), key);
             }
             return i;
         }
+    }
+
+    //TODO
+    Integer lookUpIT(int idx, int key) {
+        return null;
     }
 }
