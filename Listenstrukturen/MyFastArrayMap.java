@@ -1,6 +1,9 @@
 package Listenstrukturen;
 
+import Listenstrukturen.Pair;
+
 public class MyFastArrayMap<K, V> implements GenericMap<K, V> {
+    private final static int block = 100;
     private Pair<K,V>[] vals = (Pair<K,V>[]) new Pair[MyFastArrayMap.block];
     private int used = 0;
     
@@ -11,8 +14,8 @@ public class MyFastArrayMap<K, V> implements GenericMap<K, V> {
             //...
         }
         return this;
-    }
-    
+    }   
+
     private int index(K key) {
         int idx = 0;
         while (idx < this.used && !key.equals(this.vals[idx].l())) {
