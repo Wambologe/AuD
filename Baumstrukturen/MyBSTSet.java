@@ -113,6 +113,75 @@ public class MyBSTSet<E  extends Comparable<E>> implements GenericOrderedSet<E> 
 		return root;
 	}
 
+	/* Liefert das im Vergleich zu key naechstkleinere bzw. –groessere Element
+	der Menge bzw. null, wenn ein solches nicht existiert */
+	private E lower(TreeNode<E> t, E key) {
+		if (t == null) {
+			return null;
+		} else if (t.key.compareTo(key) >= 0) {
+			return lower(t.left, key);
+		} else {
+			E low = lower(t.right, key);
+			if (low == null) {
+				return t.key;
+			} else {
+				return low;
+			}
+		}
+	}
+
+	private E higher(TreeNode<E> t, E key) {
+		if (t == null) {
+			return null;
+		} else if (t.key.compareTo(key) <= 0) {
+			return higher(t.right, key);
+		} else {
+			E hi = higher(t.left, key);
+			if (hi == null) {
+				return t.key;
+			} else {
+				return hi;
+			}
+		}
+	}
+
+	/* Liefert das Element key, wenn es in der Menge enthalten ist;
+	ansonsten wird das naechstkleinere bzw. -groessere Element der Menge geliefert
+	bzw. null, wenn ein solches nicht existiert */
+	private E floor(TreeNode<E> t, E key) {
+		if (t == null) {
+			return null;
+		} else if (t.key.compareTo(key) == 0) {
+			return t.key;
+		} else if (t.key.compareTo(key) > 0) {
+			return floor(t.left, key);
+		} else {
+			E fl = floor(t.right, key);
+			if (fl == null) {
+				return t.key;
+			} else {
+				return fl;
+			}
+		}
+	}
+
+	private E ceil(TreeNode<E> t, E key) {
+		if (t == null) {
+			return null;
+		} else if (t.key.compareTo(key) == 0) {
+			return t.key;
+		} else if (t.key.compareTo(key) < 0) {
+			return ceil(t.right, key);
+		} else {
+			E ce = ceil(t.left, key);
+			if (ce == null) {
+				return t.key;
+			} else {
+				return ce;
+			}
+		}
+	}
+
 	//ITERATIVE IMPLEMENTIERUNGEN
 
 	public boolean containsIt(E key) {
